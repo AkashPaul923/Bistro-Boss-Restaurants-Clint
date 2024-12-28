@@ -23,7 +23,7 @@ const Footer = () => {
                         <a href="#" aria-label="Facebook" className="text-blue-600">
                             <FaFacebookF className="text-2xl" />
                         </a>
-                        <a href="#" aria-label="Instagram" className="text-violet-950">
+                        <a href="#" aria-label="Instagram" className="text-violet-700">
                             <FaInstagram className="text-2xl" />
                         </a>
                         <a href="#" aria-label="Twitter" className="text-blue-400">
