@@ -13,10 +13,12 @@ import slider5 from '../assets/home/slide5.jpg'
 
 // import required modules
 import { Autoplay, Pagination } from 'swiper/modules';
+import SectionTitle from './SectionTitle';
 
 const Categories = () => {
     return (
         <div className='md:max-w-2xl  lg:max-w-6xl mx-auto px-5 md:px-0 my-20'>
+            <SectionTitle title={'Order online'} subTitle={'From 11:00am to 10:00pm'}></SectionTitle>
             <Swiper
                 slidesPerView={2}
                 spaceBetween={30}
