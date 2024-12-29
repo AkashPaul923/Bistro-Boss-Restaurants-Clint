@@ -16,7 +16,7 @@ const Navbar = () => {
                 </>
     return (
         <nav>
-            <div className="navbar fixed bg-transparent z-10  text-white">
+            <div className="navbar fixed bg-[#0000004d] z-10 text-white">
                 <div className="navbar-start">
                     <div className="dropdown">
                         <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -28,7 +28,7 @@ const Navbar = () => {
                             {links}
                         </ul>
                     </div>
-                    <a className="btn btn-ghost text-xl">daisyUI</a>
+                    <a className="btn btn-ghost text-xl ">Bistro Boss Restaurants</a>
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1">
