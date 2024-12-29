@@ -17,7 +17,7 @@ import SectionTitle from './SectionTitle';
 
 const Categories = () => {
     return (
-        <div className='md:max-w-2xl  lg:max-w-6xl mx-auto px-5 md:px-0 my-20'>
+        <div className=' lg:max-w-7xl mx-auto px-5 lg:px-0 my-20'>
             <SectionTitle title={'Order online'} subTitle={'From 11:00am to 10:00pm'}></SectionTitle>
             <Swiper
                 slidesPerView={2}
@@ -42,23 +42,23 @@ const Categories = () => {
                 className="mySwiper"
             >
                 <SwiperSlide>
-                    <img src={slider1} alt="" />
+                    <img src={slider1} alt="" className='w-full' />
                     <p className="text-center text-white text-3xl font-bold -mt-14 uppercase">Salads</p>
                 </SwiperSlide>
                 <SwiperSlide>
-                    <img src={slider2} alt="" />
+                    <img src={slider2} alt="" className='w-full' />
                     <p className="text-center text-white text-3xl font-bold -mt-14 uppercase">Pizzas</p>
                 </SwiperSlide>
                 <SwiperSlide>
-                    <img src={slider3} alt="" />
+                    <img src={slider3} alt="" className='w-full' />
                     <p className="text-center text-white text-3xl font-bold -mt-14 uppercase">Soups</p>
                 </SwiperSlide>
                 <SwiperSlide>
-                    <img src={slider4} alt="" />
+                    <img src={slider4} alt="" className='w-full' />
                     <p className="text-center text-white text-3xl font-bold -mt-14 uppercase">Deserts</p>
                 </SwiperSlide>
                 <SwiperSlide>
-                    <img src={slider5} alt="" />
+                    <img src={slider5} alt="" className='w-full' />
                     <p className="text-center text-white text-3xl font-bold -mt-14 uppercase">Salads</p>
                 </SwiperSlide>
             </Swiper>
