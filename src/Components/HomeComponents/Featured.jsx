@@ -1,10 +1,10 @@
-import SectionTitle from "./SectionTitle";
-import featuredImg from '../assets/home/featured.jpg'
-import './Featured.css'
+import SectionTitle from "../Shared/SectionTitle";
+import featuredImg from '../../assets/home/featured.jpg'
+
 
 const Featured = () => {
     return (
-    <div className="featured-item bg-fixed">
+    <div className="bg-center bg-fixed" style={{backgroundImage: `url(${featuredImg})`}}>
         <div className=" py-28 px-5 lg:px-0 backdrop-brightness-50  text-white">
             <SectionTitle title={'From Our Menu'} subTitle={'Check it out'}></SectionTitle>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-7xl mx-auto ">

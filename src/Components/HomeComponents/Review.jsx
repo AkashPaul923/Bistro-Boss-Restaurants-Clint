@@ -8,7 +8,7 @@ import 'swiper/css/navigation';
 
 // import required modules
 import {Autoplay, Navigation } from 'swiper/modules';
-import SectionTitle from "./SectionTitle";
+import SectionTitle from "../Shared/SectionTitle";
 
 import { Rating } from '@smastrom/react-rating'
 

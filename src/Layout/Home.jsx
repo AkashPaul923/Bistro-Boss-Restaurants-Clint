@@ -1,8 +1,8 @@
-import Banner from "../Components/Banner";
-import Categories from "../Components/Categories";
-import Featured from "../Components/Featured";
-import PopularMenu from "../Components/PopularMenu";
-import Review from "../Components/Review";
+import Banner from "../Components/HomeComponents/Banner";
+import Categories from "../Components/HomeComponents/Categories";
+import Featured from "../Components/HomeComponents/Featured";
+import PopularMenu from "../Components/HomeComponents/PopularMenu";
+import Review from "../Components/HomeComponents/Review";
 
 
 const Home = () => {
