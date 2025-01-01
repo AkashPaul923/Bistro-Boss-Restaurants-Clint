@@ -5,18 +5,23 @@ import soupBg from "../assets/menu/soup-bg.jpg"
 import dessertBg from "../assets/menu/dessert-bg.jpeg"
 import pizzaBg from "../assets/menu/pizza-bg.jpg"
 import saladBg from "../assets/menu/salad-bg.jpg"
-import useMenu from "../Hooks/useMenu";
+// import useMenu from "../Hooks/useMenu";
 import MenuCategory from "../Components/MenuComponents/MenuCategory";
 import SectionTitle from "../Components/Shared/SectionTitle";
+import useCategoryFood from "../Hooks/useCategoryFood";
 
 
 const OurMenu = () => {
-    const [menu] = useMenu()
-    const offered = menu.filter(item => item.category === 'offered')
-    const desserts = menu.filter(item => item.category === 'dessert')
-    const soups = menu.filter(item => item.category === 'soup')
-    const salads = menu.filter(item => item.category === 'salad')
-    const pizzas = menu.filter(item => item.category === 'pizza')
+    // const [menu] = useMenu()
+    // const offered = menu.filter(item => item.category === 'offered')
+    // const desserts = menu.filter(item => item.category === 'dessert')
+    // const soups = menu.filter(item => item.category === 'soup')
+    // const salads = menu.filter(item => item.category === 'salad')
+    // const pizzas = menu.filter(item => item.category === 'pizza')
+
+    const { offered, desserts, soups, salads, pizzas } = useCategoryFood()
+
+    
     return (
         <div>
             <Cover img={menuBg} title='Our Menu' subTitle='WOULD YOU LICK TO TRY A DISH?'></Cover>

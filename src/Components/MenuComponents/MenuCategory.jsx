@@ -13,7 +13,7 @@ const MenuCategory = ({items, coverImg , coverTitle, coverSubTitle}) => {
                         items.map(item =><MenuCard key={item._id} item={item}></MenuCard>)
                     }
                 </div>
-                <button className="btn btn-outline inline-block border-0 border-b-8 rounded-b-xl mx-auto pb-2">View Full Menu</button>
+                <button className="btn btn-outline block my-5 border-0 border-b-4 mx-auto">ORDER YOUR FAVOURITE FOOD</button>
             </div>
         </div>
     );
