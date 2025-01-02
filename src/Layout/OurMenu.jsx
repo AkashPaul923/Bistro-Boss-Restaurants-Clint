@@ -26,11 +26,11 @@ const OurMenu = () => {
         <div>
             <Cover img={menuBg} title='Our Menu' subTitle='WOULD YOU LICK TO TRY A DISH?'></Cover>
             <SectionTitle title='Todays Offer' subTitle="Don't Miss"></SectionTitle>
-            <MenuCategory items={offered}></MenuCategory>
+            <MenuCategory coverTitle='Offered' items={offered}></MenuCategory>
             <MenuCategory
              items={desserts} 
              coverImg={dessertBg} 
-             coverTitle='Dessert' 
+             coverTitle='dessert' 
              coverSubTitle="Lorem ipsum dolor sit amet consectetur adipisicing elit. In, cumque ipsa vel quo perferendis ex esse ratione repellendus repellat, iure rem sunt iusto, reprehenderit vitae alias animi. Quia, necessitatibus enim."
             >
             </MenuCategory>
@@ -38,7 +38,7 @@ const OurMenu = () => {
             <MenuCategory
              items={pizzas} 
              coverImg={pizzaBg} 
-             coverTitle='Pizza' 
+             coverTitle='pizza' 
              coverSubTitle="Lorem ipsum dolor sit amet consectetur adipisicing elit. In, cumque ipsa vel quo perferendis ex esse ratione repellendus repellat, iure rem sunt iusto, reprehenderit vitae alias animi. Quia, necessitatibus enim."
             >
             </MenuCategory>
@@ -46,7 +46,7 @@ const OurMenu = () => {
             <MenuCategory
              items={salads} 
              coverImg={saladBg} 
-             coverTitle='Salad' 
+             coverTitle='salad' 
              coverSubTitle="Lorem ipsum dolor sit amet consectetur adipisicing elit. In, cumque ipsa vel quo perferendis ex esse ratione repellendus repellat, iure rem sunt iusto, reprehenderit vitae alias animi. Quia, necessitatibus enim."
             >
             </MenuCategory>
@@ -54,7 +54,7 @@ const OurMenu = () => {
             <MenuCategory
              items={soups} 
              coverImg={soupBg} 
-             coverTitle='Soup' 
+             coverTitle='soup' 
              coverSubTitle="Lorem ipsum dolor sit amet consectetur adipisicing elit. In, cumque ipsa vel quo perferendis ex esse ratione repellendus repellat, iure rem sunt iusto, reprehenderit vitae alias animi. Quia, necessitatibus enim."
             >
             </MenuCategory>

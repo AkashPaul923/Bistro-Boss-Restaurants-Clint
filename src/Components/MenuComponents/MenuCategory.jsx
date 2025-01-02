@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Cover from "../Shared/Cover";
 import MenuCard from "../Shared/MenuCard";
 
@@ -13,7 +14,7 @@ const MenuCategory = ({items, coverImg , coverTitle, coverSubTitle}) => {
                         items.map(item =><MenuCard key={item._id} item={item}></MenuCard>)
                     }
                 </div>
-                <button className="btn btn-outline block my-5 border-0 border-b-4 mx-auto">ORDER YOUR FAVOURITE FOOD</button>
+                <Link to={`/order-food/${coverTitle}`}><button className="btn btn-outline block my-5 border-0 border-b-4 mx-auto">ORDER YOUR FAVOURITE FOOD</button></Link>
             </div>
         </div>
     );
