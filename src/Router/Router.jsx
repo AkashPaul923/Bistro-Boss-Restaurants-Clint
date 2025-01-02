@@ -3,6 +3,9 @@ import Root from "../Root/Root";
 import Home from "../Layout/Home";
 import OurMenu from "../Layout/OurMenu";
 import OrderFood from "../Layout/OrderFood";
+import Login from "../Layout/Login";
+import Error from "../Error/Error";
+import SignUp from "../Layout/SignUp";
 
 const router = createBrowserRouter([
     {
@@ -24,6 +27,18 @@ const router = createBrowserRouter([
         },
       ]
     },
+    {
+      path: '/login',
+      element: <Login></Login>
+    },
+    {
+      path: '/signup',
+      element: <SignUp></SignUp>
+    },
+    {
+      path: "*",
+      element: <Error></Error>
+    }
 ]);
 
 export default router;
