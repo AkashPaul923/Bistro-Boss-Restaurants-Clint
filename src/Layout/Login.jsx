@@ -2,8 +2,40 @@ import { Link } from "react-router-dom";
 import loginBg from "../assets/others/authentication.png"
 import loginImg from "../assets/others/authentication2.png"
 import { FaFacebookF, FaGoogle, FaGithub } from 'react-icons/fa';
+import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-simple-captcha';
+import { useEffect, useRef, useState } from "react";
 
 const Login = () => {
+    const captchaRef = useRef(null)
+    const [disable, setDisable] = useState(true)
+    useEffect(()=>{
+        loadCaptchaEnginge(6)
+    },[])
+
+
+    const handleLogInSubmit = (event) => {
+        event.preventDefault()
+        const form = event.target
+        const email = form.email.value
+        const password = form.password.value
+        const captcha = form.captcha.value
+        console.log({email, password, captcha})
+        if (validateCaptcha(captcha)!==true) {
+            return alert("wrong captcha")
+        }
+        alert("right captcha")
+        console.log('after',{email, password, captcha})
+        
+    }
+
+    const handleCaptcha = () =>{
+        console.log(captchaRef.current.value)
+        const user_captcha_value = captchaRef.current.value
+        console.log(user_captcha_value);
+        
+    }
+
+
   return (
     <div className="flex items-center justify-center min-h-screen font-sans" style={{ backgroundImage: `url(${loginBg})`}}>
         <div className=" rounded-lg shadow-xl shadow-slate-700 p-8 max-w-6xl flex w-11/12 border-2">
@@ -15,13 +47,13 @@ const Login = () => {
             {/* Right Side: Login Form */}
             <div className="w-full md:w-1/2">
                 <h2 className="text-2xl font-bold text-center mb-6">Login</h2>
-                <form className="space-y-4">
+                <form onSubmit={handleLogInSubmit} className="space-y-4">
                     {/* Email Input */}
                     <div className="form-control w-full">
                         <label className="label">
                             <span className="label-text">Email</span>
                         </label>
-                        <input type="email" placeholder="Type here" className="input input-bordered w-full"/>
+                        <input type="email" name="email" placeholder="Enter your email" className="input input-bordered w-full"/>
                     </div>
 
                     {/* Password Input */}
@@ -29,15 +61,17 @@ const Login = () => {
                         <label className="label">
                             <span className="label-text">Password</span>
                         </label>
-                        <input type="password" placeholder="Enter your password" className="input input-bordered w-full"/>
+                        <input type="password" name="password" placeholder="Enter your password" className="input input-bordered w-full"/>
                     </div>
 
                     {/* Captcha */}
                     <div className="form-control w-full">
+                        <LoadCanvasTemplate />
                         <label className="label">
                             <span className="label-text">Captcha</span>
                         </label>
-                        <input type="text" placeholder="Type here" className="input input-bordered w-full"/>
+                        <input type="text" name="captcha" placeholder="Type captcha here" ref={captchaRef} className="input input-bordered w-full"/>
+                        <span onClick={handleCaptcha} className="btn btn-xs btn-outline">Verify captcha</span>
                     </div>
 
                     {/* Submit Button */}
