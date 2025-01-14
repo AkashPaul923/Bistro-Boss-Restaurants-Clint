@@ -1,23 +1,34 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import SignUpBg from "../assets/others/authentication.png"
 import SignUpImg from "../assets/others/authentication2.png"
 import { FaFacebookF, FaGoogle, FaGithub } from 'react-icons/fa';
 import { useContext, useEffect, useRef, useState } from "react";
 import { AuthContext } from "../Auth/AuthProvider";
 import { useForm } from "react-hook-form";
+import Swal from "sweetalert2";
 
 const SignUp = () => {
-    const { user, setUser, createUser, manageProfile } = useContext( AuthContext)
-
-    const { register, handleSubmit, watch, formState: { errors },} = useForm()
+    const { setUser, createUser, manageProfile } = useContext( AuthContext)
+    const navigate = useNavigate()
+    const { register, handleSubmit, reset, formState: { errors },} = useForm()
     
     const onSubmit = (data) => {
         console.log(data)
         createUser(data.email, data.password)
         .then(res => {
             // console.log(res)
+            manageProfile( data.name, data.photo )
+            .then(() =>{
+                setUser({...res.user, displayName: data.name, photoURL : data.photo})
+                Swal.fire({
+                    title: "Successfully Sign Up!",
+                    icon: "success",
+                    draggable: true
+                });
+                reset()
+                navigate('/')
+            })
             
-            // toast.success("Successfully register")
         })
         .catch(() =>{
             // toast.error("User already exist")
@@ -41,6 +52,15 @@ const SignUp = () => {
                         </label>
                         <input type="text" {...register("name", { required: true })} placeholder="Enter your name" className="input input-bordered w-full"/>
                         {errors.name && <span>This field is required</span>}
+                    </div>
+
+                    {/* photo Input */}
+                    <div className="form-control w-full">
+                        <label className="label">
+                            <span className="label-text">Photo URL</span>
+                        </label>
+                        <input type="URL" {...register("photo", { required: true })} placeholder="Enter your photo URL" className="input input-bordered w-full"/>
+                        {errors.photo && <span>This field is required</span>}
                     </div>
 
                     {/* Email Input */}
