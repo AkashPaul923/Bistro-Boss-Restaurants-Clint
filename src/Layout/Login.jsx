@@ -3,11 +3,10 @@ import loginBg from "../assets/others/authentication.png"
 import loginImg from "../assets/others/authentication2.png"
 import { FaFacebookF, FaGoogle, FaGithub } from 'react-icons/fa';
 import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-simple-captcha';
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 
 const Login = () => {
     const captchaRef = useRef(null)
-    const [disable, setDisable] = useState(true)
     useEffect(()=>{
         loadCaptchaEnginge(6)
     },[])
@@ -28,12 +27,7 @@ const Login = () => {
         
     }
 
-    const handleCaptcha = () =>{
-        console.log(captchaRef.current.value)
-        const user_captcha_value = captchaRef.current.value
-        console.log(user_captcha_value);
-        
-    }
+
 
 
   return (
@@ -71,7 +65,6 @@ const Login = () => {
                             <span className="label-text">Captcha</span>
                         </label>
                         <input type="text" name="captcha" placeholder="Type captcha here" ref={captchaRef} className="input input-bordered w-full"/>
-                        <span onClick={handleCaptcha} className="btn btn-xs btn-outline">Verify captcha</span>
                     </div>
 
                     {/* Submit Button */}

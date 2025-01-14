@@ -3,11 +3,12 @@ import SignUpBg from "../assets/others/authentication.png"
 import SignUpImg from "../assets/others/authentication2.png"
 import { FaFacebookF, FaGoogle, FaGithub } from 'react-icons/fa';
 import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-simple-captcha';
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
+import { AuthContext } from "../Auth/AuthProvider";
 
 const SignUp = () => {
     const captchaRef = useRef(null)
-
+    const { user, setUser, createUser, manageProfile } = useContext( AuthContext)
     
     useEffect(()=>{
         loadCaptchaEnginge(6)
@@ -17,15 +18,31 @@ const SignUp = () => {
     const handleSignUpSubmit = (event) => {
         event.preventDefault()
         const form = event.target
+        const name = form.name.value
+        const photo = ""
         const email = form.email.value
         const password = form.password.value
         const captcha = form.captcha.value
-        console.log({email, password, captcha})
+        // console.log({name, email, password, captcha})
         if (validateCaptcha(captcha)!==true) {
             return alert("wrong captcha")
         }
         alert("right captcha")
-        console.log('after',{email, password, captcha})
+        // console.log('after',{email, password, captcha})
+        createUser(email, password)
+        .then(res => {
+            console.log(res)
+            manageProfile( name, photo )
+            .then(() =>{
+                setUser({...res.user, displayName: name , photoURL: photo})
+                // navigate('/')
+                
+            })
+            // toast.success("Successfully register")
+        })
+        .catch(() =>{
+            // toast.error("User already exist")
+        })
         
     }
 
@@ -38,6 +55,14 @@ const SignUp = () => {
             <div className="w-full md:w-1/2">
                 <h2 className="text-2xl font-bold text-center mb-6">Sign Up</h2>
                 <form onSubmit={handleSignUpSubmit} className="space-y-4">
+                    {/* Name Input */}
+                    <div className="form-control w-full">
+                        <label className="label">
+                            <span className="label-text">Name</span>
+                        </label>
+                        <input type="text" name="name" placeholder="Enter your name" className="input input-bordered w-full"/>
+                    </div>
+
                     {/* Email Input */}
                     <div className="form-control w-full">
                         <label className="label">
