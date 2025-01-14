@@ -2,49 +2,28 @@ import { Link } from "react-router-dom";
 import SignUpBg from "../assets/others/authentication.png"
 import SignUpImg from "../assets/others/authentication2.png"
 import { FaFacebookF, FaGoogle, FaGithub } from 'react-icons/fa';
-import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-simple-captcha';
 import { useContext, useEffect, useRef, useState } from "react";
 import { AuthContext } from "../Auth/AuthProvider";
+import { useForm } from "react-hook-form";
 
 const SignUp = () => {
-    const captchaRef = useRef(null)
     const { user, setUser, createUser, manageProfile } = useContext( AuthContext)
+
+    const { register, handleSubmit, watch, formState: { errors },} = useForm()
     
-    useEffect(()=>{
-        loadCaptchaEnginge(6)
-    },[])
-
-
-    const handleSignUpSubmit = (event) => {
-        event.preventDefault()
-        const form = event.target
-        const name = form.name.value
-        const photo = ""
-        const email = form.email.value
-        const password = form.password.value
-        const captcha = form.captcha.value
-        // console.log({name, email, password, captcha})
-        if (validateCaptcha(captcha)!==true) {
-            return alert("wrong captcha")
-        }
-        alert("right captcha")
-        // console.log('after',{email, password, captcha})
-        createUser(email, password)
+    const onSubmit = (data) => {
+        console.log(data)
+        createUser(data.email, data.password)
         .then(res => {
-            console.log(res)
-            manageProfile( name, photo )
-            .then(() =>{
-                setUser({...res.user, displayName: name , photoURL: photo})
-                // navigate('/')
-                
-            })
+            // console.log(res)
+            
             // toast.success("Successfully register")
         })
         .catch(() =>{
             // toast.error("User already exist")
         })
-        
     }
+    
 
 
   return (
@@ -54,13 +33,14 @@ const SignUp = () => {
             {/* Left Side: Login Form */}
             <div className="w-full md:w-1/2">
                 <h2 className="text-2xl font-bold text-center mb-6">Sign Up</h2>
-                <form onSubmit={handleSignUpSubmit} className="space-y-4">
+                <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
                     {/* Name Input */}
                     <div className="form-control w-full">
                         <label className="label">
                             <span className="label-text">Name</span>
                         </label>
-                        <input type="text" name="name" placeholder="Enter your name" className="input input-bordered w-full"/>
+                        <input type="text" {...register("name", { required: true })} placeholder="Enter your name" className="input input-bordered w-full"/>
+                        {errors.name && <span>This field is required</span>}
                     </div>
 
                     {/* Email Input */}
@@ -68,7 +48,8 @@ const SignUp = () => {
                         <label className="label">
                             <span className="label-text">Email</span>
                         </label>
-                        <input type="email" name="email" placeholder="Enter your email" className="input input-bordered w-full"/>
+                        <input type="email" {...register("email", { required: true })} placeholder="Enter your email" className="input input-bordered w-full"/>
+                        {errors.name && <span>This field is required</span>}
                     </div>
 
                     {/* Password Input */}
@@ -76,20 +57,12 @@ const SignUp = () => {
                         <label className="label">
                             <span className="label-text">Password</span>
                         </label>
-                        <input type="password" name="password" placeholder="Enter your password" className="input input-bordered w-full"/>
-                    </div>
-
-                    {/* Captcha */}
-                    <div className="form-control w-full">
-                        <LoadCanvasTemplate />
-                        <label className="label">
-                            <span className="label-text">Captcha</span>
-                        </label>
-                        <input type="text" name="captcha" placeholder="Type captcha here" ref={captchaRef} className="input input-bordered w-full"/>
+                        <input type="password" {...register("password",{required: true, pattern: /^(?=.*[a-z])(?=.*[A-Z]).{6,}$/})} placeholder="Enter your password" className="input input-bordered w-full"/>
+                        {errors.password && <span>Password must be an uppercase, a lowercase and minimum six character</span>}
                     </div>
 
                     {/* Submit Button */}
-                    <button className="btn text-white bg-[#D1A054B3] hover:bg-[#816439b3] w-full mt-4">Sign Up</button>
+                    <input type="submit" className="btn text-white bg-[#D1A054B3] hover:bg-[#816439b3] w-full mt-4" value="Sign Up" />
                 </form>
 
                 {/* Additional Options */}

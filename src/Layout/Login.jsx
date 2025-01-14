@@ -3,9 +3,11 @@ import loginBg from "../assets/others/authentication.png"
 import loginImg from "../assets/others/authentication2.png"
 import { FaFacebookF, FaGoogle, FaGithub } from 'react-icons/fa';
 import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-simple-captcha';
-import { useEffect, useRef } from "react";
+import { useContext, useEffect, useRef } from "react";
+import { AuthContext } from "../Auth/AuthProvider";
 
 const Login = () => {
+    const {logIn} = useContext(AuthContext)
     const captchaRef = useRef(null)
     useEffect(()=>{
         loadCaptchaEnginge(6)
@@ -22,8 +24,13 @@ const Login = () => {
         if (validateCaptcha(captcha)!==true) {
             return alert("wrong captcha")
         }
-        alert("right captcha")
-        console.log('after',{email, password, captcha})
+        logIn(email, password)
+        .then(res =>{
+            // console.log(res)
+        })
+        .catch(()=>{
+
+        })
         
     }
 
