@@ -1,11 +1,10 @@
-import { useContext } from "react";
 import { NavLink } from "react-router-dom";
-import { AuthContext } from "../../Auth/AuthProvider";
 import Swal from "sweetalert2";
+import useAuth from "../../Hooks/useAuth";
 
 
 const Navbar = () => {
-    const {user, logOut } = useContext( AuthContext)
+    const {user, logOut } = useAuth()
 
     const handleLogOut = () => {
         logOut()
@@ -54,7 +53,22 @@ const Navbar = () => {
                     </ul>
                 </div>
                 <div className="navbar-end">
-                    <a className="btn">Button</a>
+                    <button class="btn btn-sm text-xs">
+                        Cart
+                        <div class="badge">+99</div>
+                    </button>
+                    <div className="dropdown dropdown-end">
+                        <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
+                            <div className="ring-primary ring-offset-base-100 w-12 rounded-full ring ring-offset-2">
+                                <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+                            </div>
+                        </div>
+                        <ul tabIndex={0} className="menu dropdown-content bg-base-100 rounded-box z-[1] mt-4 w-52 p-2 shadow text-black">
+                            {
+                                user && <p>{user?.displayName}</p>
+                            }
+                        </ul>
+                    </div>
                 </div>
             </div>
         </nav>
