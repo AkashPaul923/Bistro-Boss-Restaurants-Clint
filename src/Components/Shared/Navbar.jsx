@@ -1,10 +1,12 @@
 import { NavLink } from "react-router-dom";
 import Swal from "sweetalert2";
 import useAuth from "../../Hooks/useAuth";
+import useCart from "../../Hooks/useCart";
 
 
 const Navbar = () => {
     const {user, logOut } = useAuth()
+    const [carts] = useCart()
 
     const handleLogOut = () => {
         logOut()
@@ -55,7 +57,7 @@ const Navbar = () => {
                 <div className="navbar-end">
                     <button class="btn btn-sm text-xs">
                         Cart
-                        <div class="badge">+99</div>
+                        <div class="badge">+{carts.length}</div>
                     </button>
                     <div className="dropdown dropdown-end">
                         <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
