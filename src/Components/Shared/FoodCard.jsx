@@ -1,17 +1,40 @@
 import { FaCartPlus } from "react-icons/fa";
 import useAuth from "../../Hooks/useAuth";
 import Swal from "sweetalert2";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 const FoodCard = ({item}) => {
     const {name, recipe, image, price} = item
     const { user } = useAuth()
     const navigate = useNavigate()
+    const location = useLocation()
+    const axiosSecure = useAxiosSecure()
 
     const handleAddToCart = (item) => {
-        console.log(item)
-        if(user){
-            console.log(user.email);
+        // console.log(item)
+        if(user && user.email){
+            // console.log(user.email);
+            const cartItem = {
+                menuId: item._id,
+                userEmail: user.email,
+                name: item.name,
+                image: item.image,
+                price: item.price,
+            }
+            axiosSecure.post('/carts', cartItem)
+            .then(res => {
+                // console.log(res.data);
+                if(res.data.insertedId){
+                    Swal.fire({
+                        // position: "top-end",
+                        icon: "success",
+                        title: `${name} has been add in cart`,
+                        showConfirmButton: false,
+                        timer: 1500
+                      });
+                }
+            })
         }
         else{
             Swal.fire({
@@ -24,7 +47,7 @@ const FoodCard = ({item}) => {
                 confirmButtonText: "Yes, goto login!"
             }).then((result) => {
                 if (result.isConfirmed) {
-                    navigate('/login')
+                    navigate('/login', { state : location.pathname })
                     }
                 });
         }

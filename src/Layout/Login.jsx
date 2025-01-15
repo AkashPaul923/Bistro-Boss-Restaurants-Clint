@@ -16,7 +16,7 @@ const Login = () => {
         loadCaptchaEnginge(6)
     },[])
 
-
+    // console.log(location.state);
     const handleLogInSubmit = (event) => {
         event.preventDefault()
         const form = event.target
