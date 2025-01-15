@@ -3,24 +3,26 @@ import useAuth from "../../Hooks/useAuth";
 import Swal from "sweetalert2";
 import { useLocation, useNavigate } from "react-router-dom";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import useCart from "../../Hooks/useCart";
 
 const FoodCard = ({item}) => {
-    const {name, recipe, image, price} = item
+    const {name, recipe, image, price, _id} = item
     const { user } = useAuth()
     const navigate = useNavigate()
     const location = useLocation()
     const axiosSecure = useAxiosSecure()
+    const [, refetch] = useCart()
 
-    const handleAddToCart = (item) => {
+    const handleAddToCart = () => {
         // console.log(item)
         if(user && user.email){
             // console.log(user.email);
             const cartItem = {
-                menuId: item._id,
+                menuId: _id,
                 userEmail: user.email,
-                name: item.name,
-                image: item.image,
-                price: item.price,
+                name,
+                image,
+                price,
             }
             axiosSecure.post('/carts', cartItem)
             .then(res => {
@@ -32,7 +34,9 @@ const FoodCard = ({item}) => {
                         title: `${name} has been add in cart`,
                         showConfirmButton: false,
                         timer: 1500
-                      });
+                    });
+                    // refetch
+                    refetch()
                 }
             })
         }
@@ -70,7 +74,7 @@ const FoodCard = ({item}) => {
 
         {/* Add to Cart Button */}
         <div className="card-actions justify-center mb-4">
-            <button onClick={()=>handleAddToCart(item)} className="btn btn-outline bg-base-300 text-yellow-600 border-0 border-b-4 hover:text-yellow-600 flex items-center gap-2"><FaCartPlus />Add to Cart</button>
+            <button onClick={handleAddToCart} className="btn btn-outline bg-base-300 text-yellow-600 border-0 border-b-4 hover:text-yellow-600 flex items-center gap-2"><FaCartPlus />Add to Cart</button>
         </div>
     </div>
   );
