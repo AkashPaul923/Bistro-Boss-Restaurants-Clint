@@ -6,6 +6,8 @@ import OrderFood from "../Layout/OrderFood";
 import Login from "../Layout/Login";
 import Error from "../Error/Error";
 import SignUp from "../Layout/SignUp";
+import Dashboard from "../Layout/Dashboard/Dashboard";
+import Cart from "../Layout/Dashboard/Cart";
 
 const router = createBrowserRouter([
     {
@@ -25,6 +27,16 @@ const router = createBrowserRouter([
           path: '/order-food/:category',
           element: <OrderFood></OrderFood>
         },
+      ]
+    },
+    {
+      path: '/dashboard',
+      element: <Dashboard></Dashboard>,
+      children: [
+        {
+          path: '/dashboard/cart',
+          element: <Cart></Cart>
+        }
       ]
     },
     {

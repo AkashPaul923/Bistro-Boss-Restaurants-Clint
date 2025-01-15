@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import Swal from "sweetalert2";
 import useAuth from "../../Hooks/useAuth";
 import useCart from "../../Hooks/useCart";
@@ -55,10 +55,10 @@ const Navbar = () => {
                     </ul>
                 </div>
                 <div className="navbar-end">
-                    <button class="btn btn-sm text-xs">
+                    <Link to='/dashboard/cart' class="btn btn-sm text-xs">
                         Cart
                         <div class="badge">+{carts.length}</div>
-                    </button>
+                    </Link>
                     <div className="dropdown dropdown-end">
                         <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
                             <div className="ring-primary ring-offset-base-100 w-12 rounded-full ring ring-offset-2">
