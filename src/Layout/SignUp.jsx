@@ -6,10 +6,12 @@ import { useContext, useEffect, useRef, useState } from "react";
 import { AuthContext } from "../Auth/AuthProvider";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
+import useAxiosPublic from "../Hooks/useAxiosPublic";
 
 const SignUp = () => {
     const { setUser, createUser, manageProfile } = useContext( AuthContext)
     const navigate = useNavigate()
+    const axiosPublic = useAxiosPublic()
     const { register, handleSubmit, reset, formState: { errors },} = useForm()
     
     const onSubmit = (data) => {
@@ -20,13 +22,22 @@ const SignUp = () => {
             manageProfile( data.name, data.photo )
             .then(() =>{
                 setUser({...res.user, displayName: data.name, photoURL : data.photo})
-                Swal.fire({
-                    title: "Successfully Sign Up!",
-                    icon: "success",
-                    draggable: true
-                });
-                reset()
-                navigate('/')
+                const userData = {
+                    name: data.name,
+                    email: data.email
+                }
+                axiosPublic.post('/users', userData)
+                .then(res => {
+                    if(res.data.insertedId){
+                        Swal.fire({
+                            title: "Successfully Sign Up!",
+                            icon: "success",
+                            draggable: true
+                        });
+                        reset()
+                        navigate('/')
+                    }
+                })
             })
             
         })
