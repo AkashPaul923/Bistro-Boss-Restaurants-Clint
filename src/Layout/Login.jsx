@@ -1,11 +1,11 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import loginBg from "../assets/others/authentication.png"
 import loginImg from "../assets/others/authentication2.png"
-import { FaFacebookF, FaGoogle, FaGithub } from 'react-icons/fa';
 import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-simple-captcha';
 import { useContext, useEffect, useRef } from "react";
 import { AuthContext } from "../Auth/AuthProvider";
 import Swal from "sweetalert2";
+import SocialLogin from "../Components/Shared/SocialLogin";
 
 const Login = () => {
     const {logIn} = useContext(AuthContext)
@@ -91,11 +91,7 @@ const Login = () => {
                 <div className="text-center mt-4">
                     <p className="text-sm text-[#D1A054B3]">New here?<Link to='/signup' className="font-bold ml-2">Create a New Account</Link></p>
                     <p className="text-sm mt-2">Or sign in with</p>
-                    <div className="flex justify-center gap-4 mt-2">
-                        <button className="btn btn-circle btn-outline"><FaFacebookF /></button>
-                        <button className="btn btn-circle btn-outline"><FaGoogle /></button>
-                        <button className="btn btn-circle btn-outline"><FaGithub /></button>
-                    </div>
+                    <SocialLogin></SocialLogin>
                 </div>
             </div>
         </div>

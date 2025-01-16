@@ -1,12 +1,12 @@
 import { Link, useNavigate } from "react-router-dom";
 import SignUpBg from "../assets/others/authentication.png"
 import SignUpImg from "../assets/others/authentication2.png"
-import { FaFacebookF, FaGoogle, FaGithub } from 'react-icons/fa';
 import { useContext, useEffect, useRef, useState } from "react";
 import { AuthContext } from "../Auth/AuthProvider";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import useAxiosPublic from "../Hooks/useAxiosPublic";
+import SocialLogin from "../Components/Shared/SocialLogin";
 
 const SignUp = () => {
     const { setUser, createUser, manageProfile } = useContext( AuthContext)
@@ -100,11 +100,7 @@ const SignUp = () => {
                 <div className="text-center mt-4">
                     <p className="text-sm text-[#D1A054B3]">Already have account?<Link to='/login' className="font-bold ml-2">Please login</Link></p>
                     <p className="text-sm mt-2">Or sign in with</p>
-                    <div className="flex justify-center gap-4 mt-2">
-                        <button className="btn btn-circle btn-outline"><FaFacebookF /></button>
-                        <button className="btn btn-circle btn-outline"><FaGoogle /></button>
-                        <button className="btn btn-circle btn-outline"><FaGithub /></button>
-                    </div>
+                    <SocialLogin></SocialLogin>
                 </div>
             </div>
 
