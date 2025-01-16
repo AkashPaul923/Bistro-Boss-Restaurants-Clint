@@ -7,8 +7,9 @@ import Login from "../Layout/Login";
 import Error from "../Error/Error";
 import SignUp from "../Layout/SignUp";
 import Dashboard from "../Layout/Dashboard/Dashboard";
-import Cart from "../Layout/Dashboard/Cart";
 import PrivateRoute from "../Auth/PrivateRoute";
+import Cart from "../Layout/Dashboard/User/Cart";
+import AllUser from "../Layout/Dashboard/Admin/AllUser";
 
 const router = createBrowserRouter([
     {
@@ -34,10 +35,17 @@ const router = createBrowserRouter([
       path: '/dashboard',
       element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
       children: [
+        // user route
         {
           path: '/dashboard/cart',
           element: <Cart></Cart>
-        }
+        },
+
+        // Admin Route
+        {
+          path: '/dashboard/All-user',
+          element: <AllUser></AllUser>
+        },
       ]
     },
     {
