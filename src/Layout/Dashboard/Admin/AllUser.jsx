@@ -85,7 +85,7 @@ const AllUser = () => {
                     <tbody>
                         {/* row 1 */}
                         {
-                            users.map((user, idx) => <tr className="hover">
+                            users.map((user, idx) => <tr key={user._id} className="hover">
                                 <th>{idx + 1}</th>
                                 <td>{user.name}</td>
                                 <td>{user.email}</td>

@@ -25,10 +25,10 @@ const Dashboard = () => {
                         <>  
                             {/* ADMIN LINKS */}
                             <li><a>Admin Home</a></li>
-                            <li><a>Add Item</a></li>
+                            <li><NavLink to="/dashboard/add-item">Add Item</NavLink></li>
                             <li><a>MAnage Item</a></li>
                             <li><a>Manage Booking</a></li>
-                            <li><NavLink to="/dashboard/All-user">All User</NavLink></li>
+                            <li><NavLink to="/dashboard/all-user">All User</NavLink></li>
                         </>
                         :
                         <>
