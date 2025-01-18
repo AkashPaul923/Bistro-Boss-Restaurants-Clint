@@ -3,6 +3,7 @@ import useCart from "../../../Hooks/useCart";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import { Link } from "react-router-dom";
+import SectionTitle from "../../../Components/Shared/SectionTitle";
 
 
 const Cart = () => {
@@ -40,49 +41,52 @@ const Cart = () => {
 
     return (
         <div>
-            <div className="flex justify-between items-center md:text-xl font-medium md:font-bold mb-10">
-                <p>Total Order: {carts.length}</p>
-                <p>Total Price: {totalPrice}</p>
-                {
-                    carts.length ?
-                    <Link to="/dashboard/payment" className="btn bg-[#D1A054] hover:bg-[#c28e3f]">Pay</Link>
-                    :
-                    <button disabled className="btn bg-[#D1A054] hover:bg-[#c28e3f]">Pay</button>
-                }
-                
-            </div>
-            <div className="overflow-x-auto">
-                <table className="table">
-                    {/* head */}
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Image</th>
-                            <th>Name</th>
-                            <th>Price</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {
-                            carts.map((cart, idx) => <tr key={cart._id}>
-                            <th>{idx + 1}</th>
-                            <td>
-                                <div className="avatar">
-                                    <div className="mask mask-squircle h-12 w-12">
-                                        <img  src={cart.image}  alt={cart.name} />
+            <SectionTitle title="Wanna Add More" subTitle="My Cart"></SectionTitle>
+            <div className="max-w-5xl mx-auto">
+                <div className="flex justify-between items-center md:text-xl font-medium md:font-bold mb-10">
+                    <p>Total Order: {carts.length}</p>
+                    <p>Total Price: ${totalPrice}</p>
+                    {
+                        carts.length ?
+                        <Link to="/dashboard/payment" className="btn bg-[#D1A054] hover:bg-[#c28e3f]">Pay</Link>
+                        :
+                        <button disabled className="btn bg-[#D1A054] hover:bg-[#c28e3f]">Pay</button>
+                    }
+
+                </div>
+                <div className="overflow-x-auto">
+                    <table className="table w-full" >
+                        {/* head */}
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Image</th>
+                                <th>Name</th>
+                                <th>Price</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {
+                                carts.map((cart, idx) => <tr key={cart._id}>
+                                <th>{idx + 1}</th>
+                                <td>
+                                    <div className="avatar">
+                                        <div className="mask mask-squircle h-12 w-12">
+                                            <img  src={cart.image}  alt={cart.name} />
+                                        </div>
                                     </div>
-                                </div>
-                            </td>
-                            <td>{cart.name}</td>
-                            <td>${cart.price}</td>
-                            <th>
-                              <button onClick={()=>handleDelete(cart._id)} className="btn btn-ghost"><FaTrashAlt/></button>
-                            </th>
-                        </tr>)
-                        }
-                    </tbody>
-                </table>
+                                </td>
+                                <td>{cart.name}</td>
+                                <td>${cart.price}</td>
+                                <th>
+                                  <button onClick={()=>handleDelete(cart._id)} className="btn btn-ghost"><FaTrashAlt/></button>
+                                </th>
+                            </tr>)
+                            }
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     );

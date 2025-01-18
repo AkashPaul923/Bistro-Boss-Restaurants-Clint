@@ -2,11 +2,13 @@ import { Link, NavLink } from "react-router-dom";
 import Swal from "sweetalert2";
 import useAuth from "../../Hooks/useAuth";
 import useCart from "../../Hooks/useCart";
+import useAdmin from "../../Hooks/useAdmin";
 
 
 const Navbar = () => {
     const {user, logOut } = useAuth()
     const [carts] = useCart()
+    const [isAdmin] = useAdmin()
 
     const handleLogOut = () => {
         logOut()
@@ -23,7 +25,12 @@ const Navbar = () => {
                     <li><NavLink to='/'>Home</NavLink></li>
                     <li><NavLink to='/our-menu'>Our Menu</NavLink></li>
                     <li><NavLink to='/order-food/salad'>Order Food</NavLink></li>
-                    
+                    {
+                        user && isAdmin && <li><NavLink to='/dashboard/admin-home'>Dashboard</NavLink></li>
+                    }
+                    {
+                        user && !isAdmin && <li><NavLink to='/dashboard/user-home'>Dashboard</NavLink></li>
+                    }
                     {
                         user ? 
                         <li><p  onClick={handleLogOut}>Log out</p></li>
