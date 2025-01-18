@@ -35,7 +35,7 @@ const Dashboard = () => {
                             {/* USER LINKS */}
                             <li><a>User Home</a></li>
                             <li><a>Reservation</a></li>
-                            <li><a>Payment History</a></li>
+                            <li><NavLink to='/dashboard/payment-history'>Payment History</NavLink></li>
                             <li><NavLink to="/dashboard/cart">My Cart</NavLink></li>
                             <li><a>Add Review</a></li>
                             <li><a>My Booking</a></li>
